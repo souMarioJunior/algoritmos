@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 02 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Destino viagem</p>
+    <input type="text" id="ipt_destino" />
+    <button onclick="executar()">Adicionar</button>
+    <br /><br />
+    <button onclick="primeira_viagem()">Primeira viagem</button>
+    <button onclick="terceira_viagem()">Terceira viagem</button>
+    <button onclick="ultima_viagem()">Última viagem</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var lista_destino = [];
+
+  function executar() {
+    var destino = ipt_destino.value;
+
+    lista_destino.push(destino);
+  }
+
+  function primeira_viagem() {
+    if (lista_destino[0] == undefined) {
+      div_mensagem.innerHTML = `Ainda não viajou`;
+    } else {
+      div_mensagem.innerHTML = `${lista_destino[0]}`;
+    }
+  }
+
+  function terceira_viagem() {
+    if (lista_destino[2] == undefined) {
+      div_mensagem.innerHTML = `Ainda não fez a terceira viagem`;
+    } else {
+      div_mensagem.innerHTML = `${lista_destino[2]}`;
+    }
+  }
+
+  function ultima_viagem() {
+    if (lista_destino[0] == undefined) {
+      div_mensagem.innerHTML = `Ainda não viajou`;
+    } else {
+      div_mensagem.innerHTML = `${lista_destino[lista_destino.length - 1]}`;
+    }
+  }
+</script>

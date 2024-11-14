@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 06 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe o nome do filme que você mais gosta</p>
+    <input type="text" id="ipt_filme" />
+    <br /><br />
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br /><br />
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var lista = [];
+
+  function cadastrar() {
+    var mensagem = "";
+    filme = ipt_filme.value;
+    lista.push(filme);
+    // console.log(lista);
+
+    for (var contador = 0; contador < lista.length; contador++) {
+      mensagem += `${lista[contador]}<br>`;
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>

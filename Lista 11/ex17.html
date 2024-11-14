@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 17 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe o nome do produto</p>
+    <input type="text" id="ipt_nome_produto" />
+    <p>Informe a quantidade comprada deste produto</p>
+    <input type="number" id="ipt_qtd_comprada_produto" />
+    <button onclick="comprar()">Comprar</button>
+    <button onclick="vender()">Vender</button>
+    <br /><br />
+
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var lista_nome = [];
+  var lista_qtd = [];
+
+  function comprar() {
+    var nome = ipt_nome_produto.value;
+    var qtd = Number(ipt_qtd_comprada_produto.value);
+    var mensagem = "";
+
+    if (!lista_nome.includes(nome)) {
+      lista_nome.push(nome);
+      lista_qtd.push(qtd);
+      mensagem = `Produto ${nome} cadastrado com sucesso!`;
+    } else {
+      var lugar = lista_nome.indexOf(nome);
+      lista_qtd[lugar] += qtd;
+      console.log(lista_qtd[lugar]);
+      mensagem = `Quantidade de ${qtd} unidades adicionadas com sucesso!`;
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+
+  function vender() {
+    var nome = ipt_nome_produto.value;
+    var qtd = Number(ipt_qtd_comprada_produto.value);
+    var mensagem = "";
+
+    if (!lista_nome.includes(nome)) {
+      mensagem = `O produto não está na lista!`;
+    } else {
+      var lugar = lista_nome.indexOf(nome);
+
+      if (!(qtd > lista_qtd[lugar])) {
+        lista_qtd[lugar] -= qtd;
+        console.log(lista_qtd[lugar]);
+        mensagem = `${qtd} unidades vendidas de ${nome} com sucesso`;
+      } else {
+        mensagem = `Você está tentando vender mais do que tem no estoque`;
+      }
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>

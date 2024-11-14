@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 19 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe o nome de cada filme que você já viu na vida</p>
+    <input type="text" id="ipt_cada_filme" />
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br /><br />
+    <span>De...</span>
+    <input type="number" id="ipt_de" />
+    <span>Até...</span>
+    <input type="number" id="ipt_ate" />
+    <br /><br />
+    <button onclick="listar()">Listar filmes</button>
+    <button onclick="filtrar()">Filtrar filmes</button>
+    <br /><br />
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var lista_filmes = [];
+
+  function cadastrar() {
+    div_mensagem.innerHTML = "";
+    var filmes = ipt_cada_filme.value;
+    lista_filmes.push(filmes);
+    // console.log(lista_filmes);
+    var mensagem = `Você assistiu ${lista_filmes.length} filmes`;
+
+    div_mensagem.innerHTML = mensagem;
+  }
+
+  function listar() {
+    div_mensagem.innerHTML = "";
+    var mensagem = "";
+
+    for (var contador = lista_filmes.length; contador > 0; contador--) {
+      // console.log(contador);
+      mensagem += `${contador}º filme - ${lista_filmes[contador - 1]}<br>`;
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+
+  function filtrar() {
+    div_mensagem.innerHTML = "";
+    var mensagem = "";
+
+    var de = Number(ipt_de.value);
+    var ate = Number(ipt_ate.value);
+
+    if (de == "") {
+      de = 0;
+    } else {
+      de -= 1;
+    }
+
+    if (ate == "") {
+      ate = lista_filmes.length;
+    }
+
+    if (de > ate) {
+      alert("O invervalo precisa ser crescente");
+    } else {
+      for (contador = ate; contador > de; contador--) {
+        mensagem += `${contador}º filme - ${lista_filmes[contador - 1]}<br>`;
+      }
+    }
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>

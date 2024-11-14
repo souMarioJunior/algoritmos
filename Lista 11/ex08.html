@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 08 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe o nome do aluno</p>
+    <input type="text" id="ipt_nome" />
+    <button onclick="cadastrar()">Cadastrar</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  vetor_nomes = [];
+  function cadastrar() {
+    nome = ipt_nome.value;
+    vetor_nomes.push(nome);
+    var mensagem = "";
+
+    // console.log(vetor_nomes);
+
+    for (var contador = vetor_nomes.length; contador > 0; contador--) {
+      mensagem += `${contador} - ${vetor_nomes[contador - 1]}<br>`;
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>

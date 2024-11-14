@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 10 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe o linha da linha de ônibus</p>
+    <input type="text" id="ipt_linha" />
+    <button onclick="gravar()">Gravar busão</button>
+    <button onclick="pesquisar()">Pesquisar</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var vetor_linhas = [];
+  var pesquisa_linha = [];
+
+  function gravar() {
+    var linha = ipt_linha.value;
+    div_mensagem.innerHTML = "";
+    vetor_linhas.push(linha);
+    var mensagem = "";
+
+    // console.log(vetor_linhas);
+
+    for (var i = vetor_linhas.length; i > 0; i--) {
+      mensagem += `${i} - ${vetor_linhas[i - 1]}<br>`;
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+
+  function pesquisar() {
+    var linha = ipt_linha.value;
+    var mensagem = "Você nunca pegou essa linha";
+    var vezes = 0;
+    div_mensagem.innerHTML = "";
+
+    for (var j = 0; j < vetor_linhas.length; j++) {
+      if (vetor_linhas[j] == linha) {
+        vezes++;
+        pesquisa_linha.push(` ${j + 1}`);
+        mensagem = `Você já pegou essa linha ${vezes} vezes, nessa ordem: ${pesquisa_linha}`;
+      }
+    }
+
+    div_mensagem.innerHTML = mensagem;
+    pesquisa_linha = [];
+  }
+</script>

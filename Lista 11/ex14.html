@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 14 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe um número qualquer</p>
+    <input type="number" id="ipt_numero_qualquer" />
+    <button oninput="analisar()">Analisar histórico</button>
+    <br /><br />
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var lista_numeros = [];
+  var menor = 0;
+  var maior = 0;
+
+  function analisar() {
+    var numero_qualquer = ipt_numero_qualquer.value;
+    var mensagem = "";
+    lista_numeros.push(numero_qualquer);
+
+    for (var i = 0; i < lista_numeros.length; i++) {
+      mensagem += `${i + 1}º Número: ${lista_numeros[i]}<br><br>`;
+    }
+
+    for (var j = 0; j < lista_numeros.length; j++) {
+      if (lista_numeros[j] > maior) {
+        maior = lista_numeros[j];
+      } else if (lista_numeros[j] < maior) menor = lista_numeros[j];
+      if(lista_numeros[j] == 0) {
+        menor = maior;
+      } else if (lista_numeros < menor) {
+        menor = lista_numeros[j];
+      }
+    }
+
+    mensagem += `
+      Maior: ${maior} <br><br>
+      Menor: ${menor}
+      `;
+
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 12 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe o nome dos seus filhos</p>
+    <input type="text" id="ipt_nome_filho" />
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br /><br />
+    <button onclick="atualizar()">Atualizar família</button>
+    <br />
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var lista = [];
+
+  function cadastrar() {
+    var nome_filho = ipt_nome_filho.value;
+    var repetiu = false;
+
+    for (var contador = 0; contador < lista.length; contador++) {
+      // console.log(contador)
+
+      if (nome_filho == lista[contador]) {
+        repetiu = true;
+      }
+    }
+
+    if (repetiu) {
+      alert(`Não pode mais de 1 filho com o mesmo nome!`);
+    } else {
+      lista.push(nome_filho);
+    }
+  }
+
+  function atualizar() {
+    var mensagem = `
+                    Você tem ${lista.length} filhos<br>
+                    Seu custo mensal será aproximadamente R$${
+                      lista.length * 3000
+                    } se colocá-los em escola particular ou R$${
+      lista.length * 1500
+    } se eles estudarem em escola pública
+        `;
+
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>

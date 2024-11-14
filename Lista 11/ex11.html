@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 11 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe o preço do produto</p>
+    <input type="number" id="ipt_preco" />
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="atualizar()">Atualizar estoque</button>
+    <br /><br />
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var vetor_precos = [];
+
+  function cadastrar() {
+    var preco = Number(ipt_preco.value);
+    vetor_precos.push(preco);
+
+    // console.log(vetor_precos)
+  }
+
+  function atualizar() {
+    var mensagem = "";
+    var soma = 0;
+    var qtd = 0;
+
+    for (var i = vetor_precos.length; i > 0; i--) {
+      mensagem += `${i} - ${vetor_precos[i - 1]}<br>`;
+      soma += vetor_precos[i - 1];
+      qtd += 1;
+    }
+
+    div_mensagem.innerHTML = `
+      ${mensagem} <br>
+      Você tem ${qtd} produtos cadastrados em estoque <br><br>
+      Seu estoque vale R$${soma}
+      `;
+  }
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 09 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe o nome de cada projeto que você já criou na vida</p>
+    <input type="text" id="ipt_projeto" />
+    <br /><br />
+    <button onclick="registrar()">Registrar projeto</button>
+    <br /><br />
+    <button onclick="mostrar()">Mostrar meus projetos</button>
+    <br /><br />
+    <div id="div_mensagem"></div>
+    <br />
+    <div id="div_mensagem_projetos"></div>
+  </body>
+</html>
+
+<script>
+  var lista = [];
+
+  function registrar() {
+    var projeto = ipt_projeto.value;
+    lista.push(projeto);
+    var qtd = lista.length;
+    var mensagem = "";
+    mensagem = `Você fez ${qtd} projetos. Por isso você é um profissional `;
+
+    if (qtd <= 4) {
+      mensagem += `Junior`;
+    } else if (qtd <= 12) {
+      mensagem += `Pleno`;
+    } else if (qtd > 12) {
+      mensagem += `Sênior`;
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+
+  function mostrar() {
+    var mensagem = "";
+    for (var contador = lista.length; contador > 0; contador--) {
+      mensagem += `${contador} - ${lista[contador - 1]}<br>`;
+    }
+
+    div_mensagem_projetos.innerHTML = mensagem;
+  }
+</script>

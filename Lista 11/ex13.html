@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 13 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <select id="slc_campanha">
+      <option value="" disabled selected>Indique o resultado</option>
+      <option value="3">Vitória</option>
+      <option value="1">Empate</option>
+      <option value="0">Derrota</option>
+    </select>
+
+    <button onclick="registrar()">Registrar</button>
+    <p>Indique qual jogo deseja saber o resultado</p>
+    <input oninput="pesquisar()" type="text" id="ipt_pesquisa" />
+    <br /><br />
+    <div id="div_mensagem"></div>
+    <br /><br />
+    <div id="div_pesquisa"></div>
+  </body>
+</html>
+
+<script>
+  var lista_campanha = [];
+  var vitorias = [];
+  var empates = [];
+  var derrotas = [];
+
+  function registrar() {
+    var escolha = slc_campanha.value;
+    var calc = 0;
+    lista_campanha.push(Number(escolha));
+
+    console.log(lista_campanha);
+
+    if (escolha == "3") {
+      vitorias.push(Number(escolha));
+    } else if (escolha == "1") {
+      empates.push(Number(escolha));
+    } else if (escolha == "0") {
+      derrotas.push(Number(escolha));
+    }
+
+    for (var i = 0; i < lista_campanha.length; i++) {
+      calc += Number(lista_campanha[i]);
+      console.log(calc);
+    }
+
+    div_mensagem.innerHTML = `
+        O time teve: ${vitorias.length} vitórias, ${empates.length} empates, ${derrotas.length} derrotas <br>
+        Pontuação total: ${calc} <br>
+        Aproveitamento ${((calc / (lista_campanha.length * 3)) * 100).toFixed(2)}%
+        `;
+  }
+
+  function pesquisar() {
+    var entrada = ipt_pesquisa.value;
+    var pesquisa = lista_campanha[entrada - 1];
+    var mensagem = "";
+
+    if (pesquisa == undefined) {
+      mensagem = "";
+    } else if (pesquisa == "3") {
+      mensagem = `No ${entrada}º jogo, o time Ganhou`;
+    } else if (pesquisa == "1") {
+      mensagem = `No ${entrada}º jogo, o time Empatou`;
+    } else if (pesquisa == "0") {
+      mensagem = `No ${entrada}º jogo, o time Perdeu`;
+    }
+
+    div_pesquisa.innerHTML = mensagem;
+  }
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 04 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe o nome dos filmes que você gosta</p>
+    <input type="text" id="ipt_filmes" />
+    <button onclick="cadastrar()">Cadastrar filme</button>
+    <button onclick="ver_favoritos()">Ver favoritos</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var lista_filmes = [];
+
+  function cadastrar() {
+    var filme = ipt_filmes.value;
+    lista_filmes.push(filme);
+  }
+
+  function ver_favoritos() {
+    var mensagem = "";
+    for (var contador = 1; contador < lista_filmes.length - 1; contador++) {
+      mensagem += `${lista_filmes[contador]}<br>`;
+    }
+
+    div_mensagem.innerHTML = `${
+      lista_filmes[0]
+    } é o filme favorito deste usuário<br> ${mensagem} ${
+      lista_filmes[lista_filmes.length - 1]
+    } é o que o usuário menos gosta<br>
+    Total de filmes cadastrados: ${lista_filmes.length}
+    `;
+  }
+</script>

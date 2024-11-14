@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 15 | São Paulo Tech School</title>
+</head>
+<body>
+    <p>Informe o nome do produto</p>
+    <input type="text" id="ipt_nome">
+    <p>Informe o preço do produto</p>
+    <input type="number" id="ipt_preco">
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="gerar()">Gerar relatório</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    var lista_nome = [];
+    var lista_preco = [];
+
+    function cadastrar() {
+        var nome = ipt_nome.value;
+        var preco = ipt_preco.value;
+
+        lista_nome.push(nome);
+        lista_preco.push(preco);
+    }
+
+    function gerar() {
+        var mensagem = `Total de produtos: ${lista_nome.length}<br>`;
+        var soma = 0;
+        var maior = 0;
+        var menor = 999999999999999;
+
+        for(var contador = 0; contador <lista_nome.length; contador++) {
+            var nome_atual = lista_nome[contador];
+            var preco_atual = Number(lista_preco[contador]);
+
+            if(preco_atual > maior) {
+                maior = preco_atual;
+            }
+
+            if(preco_atual < menor) {
+                menor = preco_atual;
+            }
+
+            var preco_acrescido = preco_atual * 1.25;
+            var soma = 0;
+            soma += preco_atual;
+            var soma_acrescidos = 0;
+            soma_acrescidos += preco_acrescido;
+            var preco_medio = soma / lista_nome.length;
+            mensagem += `
+                        Produto ${contador + 1}: ${nome_atual} <br>
+                        Preço de compra: R$${preco_atual}. Vender por R${preco_acrescido}<br><br>
+                        `
+        }
+
+        div_mensagem.innerHTML = mensagem;
+    }
+</script>

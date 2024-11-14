@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 18 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe as músicas que você gosta</p>
+    <input type="text" id="ipt_musica" />
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br /><br />
+    <span>De...</span>
+    <input type="number" id="ipt_de" />
+    <span>Até...</span>
+    <input type="number" id="ipt_ate" />
+    <br /><br />
+    <button onclick="exibir()">Exibir</button>
+    <button onclick="filtrar()">Filtrar</button>
+    <br /><br />
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var lista = [];
+
+  function cadastrar() {
+    var musica = ipt_musica.value;
+    lista.push(musica);
+    // console.log(lista);
+  }
+
+  function exibir() {
+    div_mensagem.innerHTML = "";
+    var mensagem = "";
+
+    for (var contador = 0; contador < lista.length; contador++) {
+      // console.log(contador);
+      mensagem += `${contador + 1}ª música - ${lista[contador]}<br>`;
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+
+  function filtrar() {
+    var mensagem = "";
+    var de = Number(ipt_de.value);
+    var ate = Number(ipt_ate.value);
+
+    if (de == "") {
+      de = 0;
+    } else {
+      de -= 1;
+    }
+
+    if (ate == "") {
+      ate = lista.length;
+    }
+
+    if (de > ate) {
+      alert("O invervalo precisa ser crescente");
+    } else {
+      for (var contador = de; contador < ate; contador++) {
+        console.log(contador);
+        mensagem += `${contador + 1}ª música - ${lista[contador]}<br>`;
+      }
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>

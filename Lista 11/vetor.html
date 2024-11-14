@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vetores | São Paulo Tech School</title>
+  </head>
+  <body>
+    <input type="text" id="ipt_fruta" />
+    <br /><br />
+    <button onclick="adicionar()">Adicionar</button>
+    <button onclick="verificar()">Verificar se existe</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var lista_frutas = ["primeira fruta"];
+
+  function adicionar() {
+    var fruta = ipt_fruta.value;
+    lista_frutas.push(fruta.toLowerCase());
+
+    // console.log(lista_frutas);
+  }
+
+function verificar() {
+    var fruta = ipt_fruta.value;
+    var incluso = lista_frutas.includes(fruta.toLowerCase());
+    // lista_frutas.includes("a");
+
+    if(incluso) {
+        div_mensagem.innerHTML = `A fruta ${fruta} existe na lista`
+    } else {
+        div_mensagem.innerHTML = `A fruta ${fruta} não existe na lista`
+    }
+}
+</script>

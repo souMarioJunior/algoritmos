@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercício 20 | São Paulo Tech School</title>
+  </head>
+  <body>
+    <p>Informe o nome do produto</p>
+    <input type="text" id="ipt_nome_produto" />
+    <p>Informe o preço do produto</p>
+    <input type="text" id="ipt_preco_produto" />
+    <br /><br />
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="atualizar()">Atualizar Estoque</button>
+    <br /><br />
+    <select id="slc_filtro">
+      <option value="#" selected disabled>Filtrar por</option>
+      <option value="acima">Preço acima de</option>
+      <option value="abaixo">Preço Abaixo de</option>
+    </select>
+    <input type="number" id="ipt_valor_select" />
+    <br /><br />
+    <button onclick="filtrar()">Filtrar Produtos</button>
+    <br /><br />
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var lista_produto_nome = [];
+  var lista_produto_preco = [];
+
+  function cadastrar() {
+    div_mensagem.innerHTML = "";
+    var nome = ipt_nome_produto.value;
+    var preco = Number(ipt_preco_produto.value);
+    var mensagem = `O nome precisa ser maior que 3 letras e o preço precisa ser positivo`;
+
+    if (nome.length < 3 || preco <= 0) {
+      div_mensagem.innerHTML = mensagem;
+    } else {
+      lista_produto_nome.push(nome);
+      lista_produto_preco.push(preco);
+      console.log(lista_produto_nome, lista_produto_preco);
+      mensagem = `${nome} cadastrado efetuado com sucesso!`;
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+
+  function atualizar() {
+    div_mensagem.innerHTML = "";
+    var nome = ipt_nome_produto.value;
+    var preco = Number(ipt_preco_produto.value);
+    var mensagem = `Você tem ${lista_produto_nome.length} produtos cadastrados em estoque<br><br>`;
+    var total_preco = 0;
+
+    for (contador = 0; contador < lista_produto_nome.length; contador++) {
+      console.log(contador);
+      total_preco += lista_produto_preco[contador];
+      mensagem += `${contador + 1}. ${lista_produto_nome[contador]} - R$${
+        lista_produto_preco[contador]
+      }<br><br>`;
+    }
+
+    mensagem += `Seu estoque vale R$${total_preco}`;
+
+    div_mensagem.innerHTML = mensagem;
+  }
+
+  function filtrar() {
+    div_mensagem.innerHTML = "";
+    var filtro = slc_filtro.value;
+    var valor = Number(ipt_valor_select.value);
+    var mensagem = "";
+    var lista_nome = [];
+    var lista_preco = [];
+    var contador_2 = 0;
+    var guardar_nome = "";
+    var guardar_preco = 0;
+
+    if (filtro == "acima") {
+      for (var contador = 0; contador < lista_produto_nome.length; contador++) {
+        // console.log(`Foi ${contador}`);
+
+        if (Number(lista_produto_preco[contador]) > valor) {
+          guardar_nome = lista_produto_nome[contador];
+          guardar_preco = lista_produto_preco[contador];
+          lista_nome.push(guardar_nome);
+          lista_preco.push(guardar_preco);
+          // console.log(`Guardar: ${guardar}`);
+          mensagem += `${contador + 1}. ${lista_nome[contador_2]} - R$${lista_preco[contador_2]}<br><br>`;
+          contador_2++;
+        }
+      }
+    } else if (filtro == "abaixo") {
+      for (var contador = 0; contador < lista_produto_nome.length; contador++) {
+        // console.log(`Foi ${contador}`);
+        if (Number(lista_produto_preco[contador]) < valor) {
+          guardar_nome = lista_produto_nome[contador];
+          guardar_preco = lista_produto_preco[contador];
+          lista_nome.push(guardar_nome);
+          lista_preco.push(guardar_preco);
+          lista_preco.push(lista_produto_preco[contador]);
+          // console.log(`Guardar: ${guardar}`);
+          mensagem += `${contador + 1}. ${lista_nome[contador_2]} - R$${lista_preco[contador_2]}<br><br>`;
+          contador_2++;
+        }
+      }
+    } else {
+      mensagem = `Selecione um filtro para continuar`
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>
